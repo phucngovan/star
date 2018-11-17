@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create</title>
+</head>
+<body>
+<h1>Create Star</h1>
+<span th:if="${message} " th:text="${message}"></span>
+<form th:action="@{/create}" method="post" th:object="${star}">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td> <input type="text" th:field="*{name}"/></td>
+        </tr>
+        <tr>
+            <td>Type:</td>
+            <td> <input type="text" th:field="*{type}"/></td>
+        </tr>
+        <tr>
+            <td>Galaxy:</td>
+            <td> <input type="text" th:field="*{galaxy}"/></td>
+        </tr>
+        <tr>
+            <td>Luminosity:</td>
+            <td> <input type="text" th:field="*{luminosity}"/></td>
+            <td th:if="${#fields.hasErrors('luminosity')}" th:errors="*{luminosity}">luminosity Error</td>
+        </tr>
+        <tr>
+            <td>Distance:</td>
+            <td> <input type="text" th:field="*{distance}"/></td>
+            <td th:if="${#fields.hasErrors('distance')}" th:errors="*{distance}">Distance Error</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Create Star"></td>
+        </tr>
+    </table>
+    <a th:href="@{/}">Back to list</a><br>
+
+</form>
+</body>
+</html>

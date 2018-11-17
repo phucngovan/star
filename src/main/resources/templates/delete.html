@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+</head>
+<body>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<h1>Delete Star</h1>
+<h2>Are you sure?</h2>
+<form th:action="@{/delete}" th:object="${star}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td th:text="${star.name}"></td>
+        </tr>
+        <tr>
+            <td>Type:</td>
+            <td th:text="${star.type}"></td>
+        </tr>
+        <tr>
+            <td>Galaxy:</td>
+            <td th:text="${star.galaxy}"></td>
+        </tr>
+        <tr>
+            <td>Luminosity:</td>
+            <td th:text="${star.luminosity}"></td>
+        </tr>
+        <tr>
+            <td>Distance:</td>
+            <td th:text="${star.distance}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Delete"></td>
+        </tr>
+
+    </table>
+
+</form>
+<a th:href="@{/}">Back to List</a>
+
+
+</body>
+</html>

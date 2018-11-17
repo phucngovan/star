@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View</title>
+</head>
+<body>
+<h1>List Star</h1>
+<form>
+    <table border="1">
+        <tr>
+            <td>Search</td>
+            <td> <input value="name" name="s" type="text"></td>
+            <td> <input type="submit" value="Click"></td>
+        </tr>
+    </table>
+</form></br>
+<a th:href="@{/create}"> Add new star</a>
+<table border="1" th:object="${stars}">
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Type</td>
+        <td>Galaxy</td>
+        <td>Luminosity</td>
+        <td>Distance</td>
+    </tr>
+    <th:block th:each="star : ${stars}">
+        <tr>
+            <td th:text="${star.id}"></td>
+            <td th:text="${star.name}"></td>
+            <td th:text="${star.type}"></td>
+            <td th:text="${star.galaxy}"></td>
+            <td th:text="${star.luminosity}"></td>
+            <td th:text="${star.distance}"></td>
+            <td><a th:href="@{/edit/__${star.id}__}">Edit</a></td>
+            <td><a th:href="@{/delete/__${star.id}__}">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+<div>
+    <a th:href="@{'/'(page=${stars.number - 1})}" th:if="${stars.hasPrevious()}">Previous</a>
+    <span th:text="${stars.number + 1}"></span>/<span th:text="${stars.totalPages}"></span>
+    <a th:href="@{'/'(page=${stars.number + 1})}" th:if="${stars.hasNext()}">Next</a>
+</div>
+</body>
+</html>
